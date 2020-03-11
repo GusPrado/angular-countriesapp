@@ -1,1 +1,23 @@
-<p>country works!</p>
+<h1>Countries</h1>
+
+<button type="button" class="btn btn-primary">Add country</button>
+
+<table *ngIf="countries" class="table">
+  <thead>
+    <tr>
+      <th scope="col">Country</th>
+      <th scope="col">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let country of countries">
+      <td>{{ country.nome }}</td>
+      <td>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-secondary">Edit</button>
+          <button type="button" class="btn btn-danger">Remove</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,3 +1,4 @@
+import { AuthService } from './login/auth.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'countries';
+
+  showWelcome: boolean = true
+
+  constructor(private authService: AuthService){
+
+  }
+
+  ngOnInit() {
+    this.authService.showEmitterMenu.subscribe(
+      show => this.showWelcome = show
+    )
+  }
 }
