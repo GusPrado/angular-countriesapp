@@ -1,9 +1,9 @@
 <h1>Countries</h1>
 
 <div class="input-group">
-  <input type="text" id="pais.nome" placeholder="Nome" class="form-control">
-  <input type="text" id="pais.sigla" placeholder="Sigla" class="form-control">
-  <input type="text" id="pais.gentilico" placeholder="Gentilico" class="form-control">
+  <input type="text" [(ngModel)]="country.nome" placeholder="Name" class="form-control">
+  <input type="text" [(ngModel)]="country.sigla" placeholder="Abbr. - 2 chars" maxlength="2" class="form-control">
+  <input type="text" [(ngModel)]="country.gentilico" placeholder="Gentile" class="form-control">
   <div class="input-group-append">
     <button type="button" class="btn btn-primary" (click)="handleAdd()">Add country</button>
   </div>
@@ -21,8 +21,8 @@
       <td scope="row">{{ country.nome }}</td>
       <td>
         <div class="btn-group" role="group">
-          <button type="button" class="btn btn-secondary" (click)="handlEdit()">Edit</button>
-          <button type="button" class="btn btn-danger" (click)="handleDelete()">Remove</button>
+          <button type="button" class="btn btn-secondary" (click)="handleEdit(country.nome)">Edit</button>
+          <button type="button" class="btn btn-danger" (click)="handleDelete(country.id)">Remove</button>
         </div>
       </td>
     </tr>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../http.service'
+import { AuthService } from '../login/auth.service'
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,10 @@ export class HomeComponent implements OnInit {
   username: string
   isAdmin: boolean = false
 
-  constructor() { }
+  constructor(
+    private _http: HttpService,
+    private authService: AuthService
+    ) { }
 
   ngOnInit() {
 
@@ -19,5 +24,11 @@ export class HomeComponent implements OnInit {
     if (localStorage.getItem('admin') === 'true') {
       this.isAdmin = true
     }
+
   }
+
+  handleLogout(){
+    this.authService.handleLogout()
+  }
+
 }

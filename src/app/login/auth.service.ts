@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   endpoint: string = 'http://localhost:8090/usuario/autenticar';
-  loginAlert: boolean = false
 
   constructor(
     private http: HttpClient,
@@ -17,22 +16,30 @@ export class AuthService {
   ) {
   }
 
-handleLogin(user: User) {
-    return this.http.post<any>(`${this.endpoint}?login=${user.login}&senha=${user.senha}`, user)
-    .subscribe((res: any) => {
-      if (res.autenticado) {
-        //after authentication
+  handleLogin(user: User) {
+      return this.http.post<any>(`${this.endpoint}?login=${user.login}&senha=${user.senha}`, user)
+      .subscribe((res: any) => {
+        if (res.autenticado) {
+          //after authentication
 
-        console.log(res)
-        localStorage.setItem('access_token', res.token)
-        localStorage.setItem('admin', res.administrador)
-        localStorage.setItem('nome', res.nome)
-        this.router.navigate(['/home'])
-      } else {
-        this.loginAlert = true
-        console.log('usuario/senha errados')
-        this.router.navigate(['/login'])
-      }
-    })
-  }
+          console.log(res)
+          localStorage.setItem('access_token', res.token)
+          localStorage.setItem('admin', res.administrador)
+          localStorage.setItem('nome', res.nome)
+          localStorage.setItem('noLogin', 'false')
+          this.router.navigate(['/home'])
+        } else {
+          localStorage.setItem('noLogin', res.autenticado)
+          //console.log('usuario/senha errados')
+          this.router.navigate(['/login'])
+        }
+      })
+    }
+
+    handleLogout() {
+      localStorage.clear()
+      this.router.navigate(['/login'])
+    }
+
+
 }
