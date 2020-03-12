@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 
 
@@ -7,16 +7,26 @@ import { HttpClient } from '@angular/common/http'
 })
 export class HttpService {
 
+  api: string = 'http://localhost:8090'
   token: string
+  result: object
 
   constructor(private http: HttpClient) { }
 
-  countriesList() {
-
+  async renewTokenTime() {
     if (localStorage.getItem('access_token')) {
       this.token = localStorage.getItem('access_token')
+      await this.http.get(`${this.api}//usuario/renovar-ticket?token=${this.token}`).subscribe(data => {
+        this.result = data
+      })
     }
-    return this.http.get(`http://localhost:8090/pais/listar?token=${this.token}`)
+    return
+  }
+
+  countriesList() {
+
+    this.renewTokenTime()
+    return this.http.get(`${this.api}/pais/listar?token=${this.token}`)
   }
 
 

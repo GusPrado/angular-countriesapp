@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit   } from '@angular/core';
 import { HttpService } from '../http.service'
 
 @Component({
@@ -13,6 +13,7 @@ export class CountryComponent implements OnInit {
   countries: Object;
 
   ngOnInit() {
+
     this._http.countriesList().subscribe(data => {
       this.countries = data
       console.log(data)
@@ -20,6 +21,18 @@ export class CountryComponent implements OnInit {
   }
 
   handleRemove() {
+    this._http.renewTokenTime()
 
   }
+
+  handleAdd() {
+    this._http.renewTokenTime()
+
+  }
+
+  handleEdit(){
+    this._http.renewTokenTime()
+  }
+
+
 }
