@@ -18,4 +18,8 @@ export class CountryComponent implements OnInit {
       console.log(data)
     })
   }
+
+  handleRemove() {
+
+  }
 }

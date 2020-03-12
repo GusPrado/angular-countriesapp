@@ -1,23 +1,18 @@
 
+<h1 class="text-center bg-dark text-white">Welcome to Countries App</h1>
 
+<div *ngIf="loginAlert" class="alert alert-danger" role="alert">
+  Please check your login/password and try again!
+</div>
 
-
+<div class="text-center">
+  <div class="form-signin">
+    <h1 class="h2 mb-3 font-weight-normal">Please sign in</h1>
     <label for="user" class="sr-only">Email address</label>
     <input type="text" [(ngModel)]="user.login" id="user" class="form-control" placeholder="Your username" required autofocus>
     <label for="password" class="sr-only">Password</label>
     <input type="password" [(ngModel)]="user.senha" id="password" class="form-control" placeholder="Your password" required>
     <button class="btn btn-lg btn-primary btn-block" (click)="handleLogin()">Sign in</button>
+  </div>
+</div>
 
-
-
-<!-- <div class="text-center">
-  <form class="form-signin">
-    <img class="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-    <h1 class="h2 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" [(ngModel)]="user.nome" id="user" class="form-control" placeholder="Your e-mail" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" [(ngModel)]="user.password" id="password" class="form-control" placeholder="Your password" required>
-    <button class="btn btn-lg btn-primary btn-block" click="handleLogin()">Sign in</button>
-  </form>
-</div> -->

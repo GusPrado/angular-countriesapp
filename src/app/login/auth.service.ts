@@ -1,6 +1,6 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { User } from './user'
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -8,11 +8,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  showEmitterMenu = new EventEmitter<boolean>()
-
   endpoint: string = 'http://localhost:8090/usuario/autenticar';
-  //headers = new HttpHeaders().set('Content-Type', 'application/json');
-  currentUser = {};
+  loginAlert: boolean = false
 
   constructor(
     private http: HttpClient,
@@ -20,23 +17,22 @@ export class AuthService {
   ) {
   }
 
-
-  handleLogin(user: User) {
+handleLogin(user: User) {
     return this.http.post<any>(`${this.endpoint}?login=${user.login}&senha=${user.senha}`, user)
     .subscribe((res: any) => {
-      if (res.login !== '') {
-        //after auth
-        this.showEmitterMenu.emit(false)
+      if (res.autenticado) {
+        //after authentication
 
         console.log(res)
         localStorage.setItem('access_token', res.token)
         localStorage.setItem('admin', res.administrador)
-        this.router.navigate(['/country'])
+        localStorage.setItem('nome', res.nome)
+        this.router.navigate(['/home'])
       } else {
-        this.showEmitterMenu.emit(true)
+        this.loginAlert = true
+        console.log('usuario/senha errados')
+        this.router.navigate(['/login'])
       }
-
-      })
-    }
-
+    })
+  }
 }

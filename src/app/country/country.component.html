@@ -1,8 +1,15 @@
 <h1>Countries</h1>
 
-<button type="button" class="btn btn-primary">Add country</button>
+<div class="input-group">
+  <input type="text" id="pais.nome" placeholder="Nome" class="form-control">
+  <input type="text" id="pais.sigla" placeholder="Sigla" class="form-control">
+  <input type="text" id="pais.gentilico" placeholder="Gentilico" class="form-control">
+  <div class="input-group-append">
+    <button type="button" class="btn btn-primary" (click)="handleAdd()">Add country</button>
+  </div>
+</div>
 
-<table *ngIf="countries" class="table">
+<table *ngIf="countries" datatable class="row-border hover">
   <thead>
     <tr>
       <th scope="col">Country</th>
@@ -11,11 +18,11 @@
   </thead>
   <tbody>
     <tr *ngFor="let country of countries">
-      <td>{{ country.nome }}</td>
+      <td scope="row">{{ country.nome }}</td>
       <td>
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-secondary">Edit</button>
-          <button type="button" class="btn btn-danger">Remove</button>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-secondary" (click)="handlEdit()">Edit</button>
+          <button type="button" class="btn btn-danger" (click)="handleDelete()">Remove</button>
         </div>
       </td>
     </tr>
