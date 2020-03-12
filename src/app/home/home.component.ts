@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   username: string
-  isNotAdmin: boolean = true
+  isAdmin: boolean = false
 
   constructor() { }
 
@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
     this.username = localStorage.getItem('nome')
 
     if (localStorage.getItem('admin') === 'true') {
-      this.isNotAdmin = false
+      this.isAdmin = true
     }
   }
 }
