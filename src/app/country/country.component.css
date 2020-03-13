@@ -1,3 +1,11 @@
+.nav-like {
+  display: flex;
+  text-align: center;
+  font-size: 1.5rem;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
 .input-group {
   margin-bottom: 1.5rem;
 }

@@ -26,11 +26,10 @@ export class AuthService {
           localStorage.setItem('access_token', res.token)
           localStorage.setItem('admin', res.administrador)
           localStorage.setItem('nome', res.nome)
-          localStorage.setItem('noLogin', 'false')
+          localStorage.setItem('loginFail', 'false')
           this.router.navigate(['/home'])
         } else {
-          localStorage.setItem('noLogin', res.autenticado)
-          //console.log('usuario/senha errados')
+          localStorage.setItem('loginFail', res.autenticado)
           this.router.navigate(['/login'])
         }
       })

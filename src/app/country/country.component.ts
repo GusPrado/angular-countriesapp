@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service'
 import { Country }  from './country'
+import 'bootstrap';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-country',
@@ -15,30 +17,30 @@ export class CountryComponent implements OnInit {
 
   countries: Object;
 
-  ngOnInit() {
-    this._http.renewTokenTime()
-    this._http.countriesList().subscribe(data => {
-        this.countries = data
-        console.log(data)
-      })
 
+  ngOnInit() {
+    //this._http.renewTokenTime()
+    this._http.countriesList().subscribe(data => {
+      this.countries = data
+      console.log(data)
+    })
 
   }
 
   handleDelete(id) {
-    console.log(id)
+
     this._http.handleDelete(id)
 
   }
 
   handleAdd() {
-    this._http.renewTokenTime()
+
     this._http.handleAdd(this.country)
-    console.log(this.country)
+
   }
 
-  handleEdit(){
-    this._http.renewTokenTime()
+  ngAfterViewChecked() {
+    (<any>$('[data-toggle="tooltip"]')).tooltip();
   }
 
 }

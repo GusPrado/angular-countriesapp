@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   private user: User = new User()
 
-  loginAlert: boolean = false
+  loginFailAlert: boolean = false
 
   constructor(private authService: AuthService) { }
 
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   handleLogin() {
     this.authService.handleLogin(this.user)
     if (localStorage.getItem('noLogin') === 'false') {
-      this.loginAlert = true
+      this.loginFailAlert = true
     }
   }
 
