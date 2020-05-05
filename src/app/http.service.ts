@@ -75,6 +75,4 @@ export class HttpService {
       console.log('token expirou')
     }
   }
-
-
 }

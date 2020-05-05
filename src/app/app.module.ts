@@ -1,4 +1,4 @@
-import { AuthService } from './login/auth.service';
+import { AuthService } from './core/auth/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { DataTablesModule } from 'angular-datatables';
