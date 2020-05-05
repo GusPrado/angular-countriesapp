@@ -17,18 +17,6 @@ export class HomeComponent implements OnInit {
     private authService: AuthService
     ) { }
 
-  ngOnInit() {
-
-    this.username = localStorage.getItem('nome')
-
-    if (localStorage.getItem('admin') === 'true') {
-      this.isAdmin = true
-    }
+  ngOnInit() {}
 
   }
-
-  handleLogout(){
-    this.authService.handleLogout()
-  }
-
-}

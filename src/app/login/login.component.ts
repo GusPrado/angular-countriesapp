@@ -1,6 +1,7 @@
 import { AuthService } from '../core/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../core/user/user'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,21 +10,36 @@ import { User } from '../core/user/user'
 })
 export class LoginComponent implements OnInit {
 
-  private user: User = new User()
+  loginForm: FormGroup
 
-  loginFailAlert: boolean = false
+  constructor(
+    private formbuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+    ) { }
 
-  constructor(private authService: AuthService) { }
+  ngOnInit(): void {
 
-  ngOnInit() {
-
+    this.loginForm = this.formbuilder.group({
+      userName: ['', Validators.required],
+      password: ['', Validators.required]
+    })
   }
 
-  handleLogin() {
-    this.authService.handleLogin(this.user)
-    if (localStorage.getItem('noLogin') === 'false') {
-      this.loginFailAlert = true
-    }
+  login() {
+    const userName = this.loginForm.get('userName').value
+    const password = this.loginForm.get('password').value
+
+    this.authService
+      .authenticate(userName, password)
+      .subscribe(() => {
+       this.router.navigate(['home'])
+      },
+      err => {
+        console.log(err)
+        this.loginForm.reset()
+        //alert('Invalid user or password')
+      })
   }
 
 }

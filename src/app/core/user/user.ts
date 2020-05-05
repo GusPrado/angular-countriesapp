@@ -1,4 +1,7 @@
-export class User {
-  login: string
-  senha: string
+export interface User {
+  administrador:	boolean,
+  autenticado:	boolean,
+  login:	string,
+  nome:	string,
+  token:	string
 }

@@ -1,19 +1,26 @@
 
-<h1 class="text-center bg-dark text-white">Welcome to Countries App</h1>
+<!-- <h1 class="text-center bg-dark text-white">Welcome to Countries App</h1>
 
 <div *ngIf="loginFailAlert === true" class="alert alert-danger" role="alert">
   Please check your login/password and try again!
-</div>
+</div> -->
 
 <div class="text-center">
-  <div class="form-signin">
-    <img class="mb-4" src="assets/world.svg" alt="" width="72" height="72">
-    <h1 class="h2 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="user" class="sr-only">Email address</label>
-    <input type="text" [(ngModel)]="user.login" id="user" class="form-control" placeholder="Your username" required autofocus>
-    <label for="password" class="sr-only">Password</label>
-    <input type="password" [(ngModel)]="user.senha" id="password" class="form-control" placeholder="Your password" required>
-    <button class="btn btn-lg btn-primary btn-block" (click)="handleLogin()">Sign in</button>
-  </div>
+  <form [formGroup]="loginForm" class="form mt-4" (submit)="login()">
+    <div class="form-group">
+      <img class="mb-4" src="assets/world.svg" alt="" width="72" height="72">
+      <h1 class="h2 mb-3 font-weight-normal">Please sign in</h1>
+      <label for="user" class="sr-only">Email address</label>
+      <input formControlName="userName" class="form-control" placeholder="Your username" autofocus>
+      <label for="password" class="sr-only">Password</label>
+      <input formControlName="password" type="password" class="form-control" placeholder="Your password">
+      <button
+        [disabled]="loginForm.invalid"
+        class="btn btn-lg btn-primary btn-block"
+        type="submit"
+        >Sign in</button>
+    </div>
+  </form>
 </div>
+
 
