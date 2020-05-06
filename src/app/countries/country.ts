@@ -1,6 +1,6 @@
-export class Country {
+export interface Country {
   gentilico: string
-  id: number = 0;
+  id: number
   nome: string
   sigla: string
 }
