@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import 'bootstrap';
-import * as $ from 'jquery';
+// import 'bootstrap';
+// import * as $ from 'jquery';
 import { Country } from '../country';
 import { CountryService } from '../country.service';
 import { Router } from '@angular/router';
@@ -36,18 +36,7 @@ export class CountryListComponent implements OnInit {
     this.isAdmin = this.userService.getUserProfile()
   }
 
-  deleteCountry(id) {
-
-    this.countryService
-      .deleteCountry(id)
-      .subscribe()
-    this.countryService.listAll()
-    this.router.navigate(['/country'])
-  }
-
-
-  ngAfterViewChecked() {
-    (<any>$('[data-toggle="tooltip"]')).tooltip();
-  }
-
+  // ngAfterViewChecked() {
+  //   (<any>$('[data-toggle="tooltip"]')).tooltip();
+  // }
 }

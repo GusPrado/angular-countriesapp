@@ -2,6 +2,7 @@
 <div class="text-center">
   <h3>Countries List</h3>
 </div>
+<hr>
 
 <button [disabled]="!isAdmin" type="button" class="btn btn-primary" [routerLink]="['/country', 'add']">Add country</button>
 
@@ -16,10 +17,14 @@
     <tr *ngFor="let country of countries">
       <td scope="row">{{ country.nome }}</td>
       <td>
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="We apologize! This is already under construction.">Edit</button>
-          <button [disabled]="!isAdmin" type="button" class="btn btn-danger" (click)="deleteCountry(country.id)">Remove</button>
+        <div>
+          <button [disabled]="!isAdmin" type="button" class="btn btn-secondary" [routerLink]="['/country', country.nome]">Edit</button>
         </div>
+        <!-- <div class="btn-group" role="group">
+          <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="We apologize! This is already under construction.">Edit</button>
+          <button [disabled]="!isAdmin" type="button" class="btn btn-danger" [routerLink]="['/country', country.nome]">Edit</button>
+          <button [disabled]="!isAdmin" type="button" class="btn btn-danger" (click)="deleteCountry(country.id)">Remove</button>
+        </div> -->
       </td>
     </tr>
   </tbody>

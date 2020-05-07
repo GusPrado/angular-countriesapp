@@ -23,6 +23,12 @@ export class CountryService{
       .get<Country[]>(`${API_URL}/pais/listar?token=${authToken}`)
   }
 
+  listOne(country){
+    const authToken = this.tokenService.getToken()
+    return this.http
+      .get<Country>(`${API_URL}/pais/pesquisar?filtro=${country}&token=${authToken}`)
+  }
+
   addCountry(country: string, abbr: string, gentile: string){
     const authToken = this.tokenService.getToken()
     return this.http

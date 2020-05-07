@@ -1,24 +1,12 @@
-import { Directive, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Directive, HostListener, ElementRef } from '@angular/core';
 
 @Directive({
-    selector: '[uppercaseDir]',
-    host: {
-        '[value]': 'uppercase',
-        '(input)': 'format($event.target.value)'
-    }
+ selector: '[uppercaseDir]'
 })
-export class ToUppercaseDirective implements OnInit {
+export class ToUppercaseDirective {
+  constructor(public ref: ElementRef) { }
 
-    @Input() uppercase: string;
-    @Output() uppercaseChange: EventEmitter<string> = new EventEmitter<string>();
-
-    ngOnInit() {
-        this.uppercase = this.uppercase || '';
-        this.format(this.uppercase);
-    }
-
-    format(value) {
-        value = value.toUpperCase();
-        this.uppercaseChange.next(value);
-    }
+  @HostListener('input', ['$event']) onInput(event) {
+     this.ref.nativeElement.value = event.target.value.toUpperCase()
+  }
 }

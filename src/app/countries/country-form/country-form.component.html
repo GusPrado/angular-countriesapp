@@ -10,7 +10,8 @@
   </div>
   <div class="form-group">
     <label>Abbreviation *</label>
-    <input uppercaseDir formControlName="abbr" type="text" class="form-control" pattern="[A-Za-z]{2}" title="Two letter country code">
+    <input uppercaseDir formControlName="abbr" type="text" class="form-control" maxlength="2" title="Two letter country code">
+    <!-- <input oninput="this.value = this.value.toUpperCase()" formControlName="abbr" type="text" class="form-control" pattern="[A-Za-z]*" maxlength="2" minlength="2" title="Two letter country code"> -->
   </div>
   <div class="form-group">
     <label>Gentile *</label>

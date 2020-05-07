@@ -1,0 +1,27 @@
+<div class="text-center">
+  <h3>Edit Country</h3>
+</div>
+
+
+<table *ngIf="details" class="table table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Country</th>
+      <th scope="col">Abbreviation</th>
+      <th scope="col">Gentile</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let detail of details">
+      <td scope="row">{{ detail.nome }}</td>
+      <td scope="row">{{ detail.sigla }}</td>
+      <td scope="row">{{ detail.gentilico }}</td>
+      <td>
+        <div>
+          <button type="button" class="btn btn-danger" (click)="deleteCountry(detail.id)">Delete</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

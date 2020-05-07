@@ -7,6 +7,7 @@ import { CountryListComponent } from './countries/country-list/country-list.comp
 import { LoginComponent } from './home/login/login.component';
 import { CountryFormComponent } from './countries/country-form/country-form.component';
 import { AuthGuard } from './core/auth/auth.guard';
+import { CountryDetailsComponent } from './countries/country-details/country-details.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,11 @@ const routes: Routes = [
   { path: 'country/add',
     component: CountryFormComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  { path: 'country/:name',
+  component: CountryDetailsComponent,
+  canActivate: [AuthGuard]
+}
 ];
 
 @NgModule({

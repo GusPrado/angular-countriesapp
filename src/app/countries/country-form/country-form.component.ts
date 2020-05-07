@@ -22,7 +22,14 @@ export class CountryFormComponent implements OnInit {
   ngOnInit(): void {
     this.countryForm = this.formbuilder.group({
       country: ['', Validators.required],
-      abbr: ['', Validators.required],
+      abbr: ['',
+              [
+                Validators.required,
+                Validators.minLength(2),
+                Validators.maxLength(2),
+                Validators.pattern(/^[a-zA-Z_\-]+$/)
+              ]
+            ],
       gentile: ['', Validators.required]
 
     })
@@ -35,8 +42,8 @@ export class CountryFormComponent implements OnInit {
 
     this.countryService
       .addCountry(country, abbr, gentile)
-      .subscribe(result => console.log(result))
-
-    this.router.navigate(['country'])
+      .subscribe(res => {
+        this.router.navigate(['country'])
+      })
   }
 }

@@ -29,6 +29,8 @@ export class TokenService{
 
   renewToken(){
     const authToken = this.getToken()
-    return this.http.get(`${API_URL}/usuario/renovar-ticket?token=${authToken}`)
+    return this.http
+      .get(`${API_URL}/usuario/renovar-ticket?token=${authToken}`)
+
   }
 }
