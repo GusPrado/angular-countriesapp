@@ -1,43 +1,50 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../http.service'
-import { Country }  from './country'
 import 'bootstrap';
 import * as $ from 'jquery';
+import { Country } from '../country';
+import { CountryService } from '../country.service';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/core/user/user.service';
 
 @Component({
   selector: 'app-country',
-  templateUrl: './country.component.html',
-  styleUrls: ['./country.component.css']
+  templateUrl: './country-list.component.html',
+  styleUrls: ['./country-list.component.css']
 })
-export class CountryComponent implements OnInit {
+export class CountryListComponent implements OnInit {
 
-  private country: Country = new Country()
+  userProfile: object
 
-  constructor(private _http: HttpService) { }
+  constructor(
+    private router: Router,
+    private countryService: CountryService,
+    private userService: UserService
+    ) { }
 
-  countries: Object;
-
+  countries: Country[];
+  isAdmin: boolean
 
   ngOnInit() {
-    //this._http.renewTokenTime()
-    this._http.countriesList().subscribe(data => {
-      this.countries = data
-      console.log(data)
-    })
 
+    this.countryService
+      .listAll()
+      .subscribe(data => {
+        this.countries = data
+        console.log(data)
+      })
+
+    this.isAdmin = this.userService.getUserProfile()
   }
 
-  handleDelete(id) {
+  deleteCountry(id) {
 
-    this._http.handleDelete(id)
-
+    this.countryService
+      .deleteCountry(id)
+      .subscribe()
+    this.countryService.listAll()
+    this.router.navigate(['/country'])
   }
 
-  handleAdd() {
-
-    this._http.handleAdd(this.country)
-
-  }
 
   ngAfterViewChecked() {
     (<any>$('[data-toggle="tooltip"]')).tooltip();

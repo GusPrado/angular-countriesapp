@@ -8,6 +8,7 @@ export class UserService {
 
   private userSubject = new BehaviorSubject<User>(null)
   private userName: string
+  private userProfile: object
 
   constructor(private tokenService: TokenService){}
 
@@ -18,6 +19,14 @@ export class UserService {
   isLogged() {
 
     return this.tokenService.hasToken()
+  }
+
+  getUserProfile() {
+    this.userProfile = JSON.parse(localStorage.getItem('isAdmin'))
+    if (this.userProfile) {
+      return true
+    }
+    return false
   }
 
   logout() {

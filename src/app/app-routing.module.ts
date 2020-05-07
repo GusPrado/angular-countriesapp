@@ -1,17 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CountryComponent } from './country/country.component'
+
 import { AboutComponent } from './about/about.component'
-import { LoginComponent } from './login/login.component'
 import { HomeComponent } from './home/home.component'
+import { CountryListComponent } from './countries/country-list/country-list.component';
+import { LoginComponent } from './home/login/login.component';
+import { CountryFormComponent } from './countries/country-form/country-form.component';
+import { AuthGuard } from './core/auth/auth.guard';
 
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'country', component: CountryComponent },
-  { path: 'about', component: AboutComponent }
+  { path: '',
+    component: HomeComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: 'login', component: LoginComponent},
+  { path: 'country',
+    component: CountryListComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: 'country/add',
+    component: CountryFormComponent,
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({

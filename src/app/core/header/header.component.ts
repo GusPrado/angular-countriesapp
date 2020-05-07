@@ -6,7 +6,8 @@ import { TokenService } from '../token/token.service';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html'
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
 
@@ -22,12 +23,12 @@ logged: string
   ngOnInit() {
 
     this.userName = localStorage.getItem('nome')
-    this.logged = localStorage.getItem('authToken')
+    this.logged = this.tokenService.getToken()
   }
 
   logout() {
 
     this.userService.logout()
-    this.router.navigate([''])
+    this.router.navigate(['login'])
   }
 }

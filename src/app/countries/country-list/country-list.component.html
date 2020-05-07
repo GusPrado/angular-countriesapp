@@ -1,24 +1,15 @@
 
-<div>
-  <a>Countries</a>
-  <a [routerLink]="['/home']">back</a>
+<div class="text-center">
+  <h3>Countries List</h3>
 </div>
 
-<!--
-<div class="input-group">
-  <input type="text" [(ngModel)]="country.nome" placeholder="Name" class="form-control" required>
-  <input type="text" [(ngModel)]="country.sigla" placeholder="Abbr. - 2 letters" maxlength="2" class="form-control" required>
-  <input type="text" [(ngModel)]="country.gentilico" placeholder="Gentile" class="form-control" required>
-  <div class="input-group-append">
-    <button type="button" class="btn btn-primary" (click)="handleAdd()">Add country</button>
-  </div>
-</div>
+<button [disabled]="!isAdmin" type="button" class="btn btn-primary" [routerLink]="['/country', 'add']">Add country</button>
 
 <table *ngIf="countries" datatable class="row-border hover">
   <thead>
     <tr>
       <th scope="col">Country</th>
-      <th scope="col">Options</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -27,9 +18,9 @@
       <td>
         <div class="btn-group" role="group">
           <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="We apologize! This is already under construction.">Edit</button>
-          <button type="button" class="btn btn-danger" (click)="handleDelete(country.id)">Remove</button>
+          <button [disabled]="!isAdmin" type="button" class="btn btn-danger" (click)="deleteCountry(country.id)">Remove</button>
         </div>
       </td>
     </tr>
   </tbody>
-</table> -->
+</table>

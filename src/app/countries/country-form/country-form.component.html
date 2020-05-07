@@ -1,0 +1,22 @@
+
+<div class="text-center">
+  <h3>Add Country</h3>
+</div>
+
+<form [formGroup]="countryForm" class="form mt-4" (submit)="addCountry()">
+  <div class="form-group">
+    <label>Name *</label>
+    <input formControlName="country" type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Abbreviation *</label>
+    <input uppercaseDir formControlName="abbr" type="text" class="form-control" pattern="[A-Za-z]{2}" title="Two letter country code">
+  </div>
+  <div class="form-group">
+    <label>Gentile *</label>
+    <input formControlName="gentile" type="text" class="form-control">
+    <small>* Required fields</small>
+  </div>
+  <button [disabled]="countryForm.invalid" type="submit" class="btn btn-primary btn-block">Submit</button>
+  <a type="button" [routerLink]="['/country']" class="btn btn-secondary btn-block">Cancel</a>
+</form>

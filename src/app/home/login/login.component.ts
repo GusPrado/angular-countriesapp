@@ -1,10 +1,9 @@
-import { AuthService } from '../core/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TokenService } from '../core/token/token.service';
-import { User } from '../core/user/user';
-import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/core/auth/auth.service';
+import { TokenService } from 'src/app/core/token/token.service';
+import { User } from 'src/app/core/user/user';
 
 @Component({
   selector: 'app-login',
@@ -44,7 +43,7 @@ export class LoginComponent implements OnInit {
           this.tokenService.setToken(res.token)
           localStorage.setItem('isAdmin', JSON.stringify(res.administrador))
           localStorage.setItem('nome', res.nome)
-          this.router.navigate(['home'])
+          this.router.navigate(['country'])
         } else {
 
           this.loginForm.reset()

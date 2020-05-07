@@ -20,12 +20,23 @@ export class CountryService{
   listAll(){
     const authToken = this.tokenService.getToken()
     return this.http
-      .get<Country[]>(`${API_URL}/pais/listar/?token=${authToken}`)
+      .get<Country[]>(`${API_URL}/pais/listar?token=${authToken}`)
   }
 
-  listOne(){}
+  addCountry(country: string, abbr: string, gentile: string){
+    const authToken = this.tokenService.getToken()
+    return this.http
+      .post(`${API_URL}/pais/salvar?token=${authToken}`,
+      {
+        nome: country,
+        sigla: abbr,
+        gentilico: gentile
+      }
+      )
+  }
 
-  addCountry(){}
-
-  deleteCountry(){}
+  deleteCountry(id: number){
+    const authToken = this.tokenService.getToken()
+    return this.http.get(`${API_URL}/pais/excluir?id=${id}&token=${authToken}`)
+  }
 }
