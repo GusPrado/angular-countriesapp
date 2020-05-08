@@ -22,15 +22,15 @@ export class CountryDetailsComponent implements OnInit {
 
     this.activatedRoute.params.subscribe(params => {
       this.countryName = params.name
-      console.log(this.countryName)
     })
 
     this.countryService
       .listOne(this.countryName)
       .subscribe(res => {
+
         this.details = res
-        console.log(res)
       })
+      console.log('passou pelo oninit')
 
   }
 

@@ -6,15 +6,9 @@ import { TokenService } from '../token/token.service';
 @Injectable({ providedIn: 'root' })
 export class UserService {
 
-  private userSubject = new BehaviorSubject<User>(null)
-  private userName: string
-  private userProfile: object
+  private userProfile: boolean
 
   constructor(private tokenService: TokenService){}
-
-  getUserName() {
-
-  }
 
   isLogged() {
 
@@ -29,8 +23,4 @@ export class UserService {
     return false
   }
 
-  logout() {
-
-    localStorage.clear()
-  }
 }

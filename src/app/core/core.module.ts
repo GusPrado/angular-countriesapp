@@ -5,7 +5,6 @@ import { HeaderComponent } from './header/header.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 
-
 @NgModule({
   declarations: [HeaderComponent],
   exports: [HeaderComponent],

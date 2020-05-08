@@ -3,17 +3,15 @@
       <a class="navbar-brand" [routerLink]="['']" >
         COUNTRY APP
       </a>
-      <a *ngIf="logged" [routerLink]="['country']">Countries</a>
-
-      <!-- <div *ngIf="(user$ | async) as user; else login"> -->
-      <div *ngIf="logged; else login">
+      <a *ngIf="(user$ | async)" [routerLink]="['country']">Countries</a>
+      <div *ngIf="(user$ | async) as user; else login">
           <i class="fa fa-user-circle mr-1"></i>
-          <a class="mr-1">Olá, {{ userName }}</a>
+          <a class="mr-1">Olá, {{ user.nome }}</a>
           <a id="logout" (click)="logout()">[Logout]</a>
           <!-- <i id="logout" (click)="logout()" class="fa fa-sign-out"></i> -->
       </div>
       <ng-template #login>
-        <a class="ml-2">(Unkown user)</a>
+        <a class="ml-2" [routerLink]="['login']">Please, sign in</a>
       </ng-template>
   </nav>
 </header>
