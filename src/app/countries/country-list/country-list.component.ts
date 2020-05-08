@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import 'bootstrap';
-// import * as $ from 'jquery';
+
 import { Country } from '../country';
 import { CountryService } from '../country.service';
 import { Router } from '@angular/router';
@@ -13,7 +12,7 @@ import { UserService } from 'src/app/core/user/user.service';
 })
 export class CountryListComponent implements OnInit {
 
-  userProfile: object
+  userProfile: boolean
 
   constructor(
     private router: Router,
@@ -35,8 +34,4 @@ export class CountryListComponent implements OnInit {
 
     this.isAdmin = this.userService.getUserProfile()
   }
-
-  // ngAfterViewChecked() {
-  //   (<any>$('[data-toggle="tooltip"]')).tooltip();
-  // }
 }

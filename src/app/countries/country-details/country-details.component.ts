@@ -30,7 +30,7 @@ export class CountryDetailsComponent implements OnInit {
 
         this.details = res
       })
-      console.log('passou pelo oninit')
+      console.log('passou pelo oninit country-details')
 
   }
 

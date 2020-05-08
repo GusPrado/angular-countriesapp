@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class AuthInterceptor implements HttpInterceptor {
 
   origReq: HttpRequest<any>
+  route: string
 
   constructor(
     public http: HttpClient,
@@ -31,6 +32,8 @@ export class AuthInterceptor implements HttpInterceptor {
             if (err instanceof HttpErrorResponse && err.status === 401){
               console.log('executar token refresh')
               this.origReq = req
+
+
               this.tokenService
                 .renewToken()
                 .subscribe(res => {
@@ -38,9 +41,11 @@ export class AuthInterceptor implements HttpInterceptor {
                   if (!res) {
                     console.log('sem retorno API')
                   } else {
-                    console.log('reenviando req:', this.origReq)
+                    //console.log('reenviando req:', this.origReq)
                     //next.handle(this.origReq)
+                    console.log('auth ok - redirecionando para /country')
                     this.router.navigate(['/country'])
+                    //location.reload(true)
                   }
                 })
             }

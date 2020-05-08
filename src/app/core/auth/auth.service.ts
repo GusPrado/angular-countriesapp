@@ -4,6 +4,7 @@ import { environment } from './../../../environments/environment.prod';
 import { User } from '../user/user';
 import { BehaviorSubject } from 'rxjs'
 import { tap } from 'rxjs/operators';
+import { TokenService } from '../token/token.service';
 
 
 //const API_URL = environment.ApiUrl
@@ -16,20 +17,21 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private tokenService: TokenService
   ) {}
 
   authenticate (login: string, password: string) {
 
     return this.http
-    .post<User>(
-      `${API_URL}/usuario/autenticar?login=${login}&senha=${password}`
-      , {})
-    .pipe(tap(response => {
-      const user = response as User
-      this.userName = user.nome
-      this.currentUserSubject.next(response)
-      console.log('authUser', response)
-    }))
+      .post<User>(
+        `${API_URL}/usuario/autenticar?login=${login}&senha=${password}`
+        , {})
+      .pipe(tap(response => {
+        const user = response as User
+        this.userName = user.nome
+        this.currentUserSubject.next(response)
+        console.log('authUser', response)
+      }))
   }
 
   getUser() {
